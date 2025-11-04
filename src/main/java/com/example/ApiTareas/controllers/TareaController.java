@@ -1,7 +1,9 @@
 package com.example.ApiTareas.controllers;
 
 import com.example.ApiTareas.models.TareaModel;
+import com.example.ApiTareas.models.UsuarioModel;
 import com.example.ApiTareas.repositories.TareaRepository;
+import com.example.ApiTareas.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,10 @@ public class TareaController {
     @Autowired
     private TareaRepository tareaRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+
     // Obtener tareas por usuario
     @GetMapping("/{userId}")
     public List<TareaModel> listarTareas(@PathVariable Long userId) {
@@ -22,7 +28,17 @@ public class TareaController {
 
     // Crear tarea
     @PostMapping
-    public TareaModel crearTarea(@RequestBody TareaModel tarea) {
+    public TareaModel crearTarea(
+            @RequestBody TareaModel tarea,
+            @RequestParam String username) {
+
+        UsuarioModel usuario = usuarioRepository.findByUsername(username);
+
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+
+        tarea.setUserId(usuario.getId()); // asignar ID automáticamente
         return tareaRepository.save(tarea);
     }
 

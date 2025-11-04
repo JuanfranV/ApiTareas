@@ -1,7 +1,7 @@
 package com.example.ApiTareas.controllers;
 
 import com.example.ApiTareas.models.UsuarioModel;
-import com.example.ApiTareas.repositories.UsuarioReposity;
+import com.example.ApiTareas.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioReposity usuarioReposity;
+    private UsuarioRepository usuarioReposity;
 
     @PostMapping("/registrar")
     public String registrar(@RequestBody UsuarioModel user) {
