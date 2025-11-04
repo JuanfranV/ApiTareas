@@ -15,7 +15,7 @@ public class TareaModel {
 
     private String descripcion;
 
-    @Column(nullable = false)
+    @Column(name = "usuario_id", nullable = false)
     private Long userId;
 
     @Column(nullable = false)
