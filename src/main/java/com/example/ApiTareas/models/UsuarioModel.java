@@ -14,7 +14,7 @@ public class UsuarioModel {
     private String username;
 
     @Column(nullable = false)
-    private String password; // luego metemos hash, por ahora normal
+    private String password;
 
     public UsuarioModel() {
     }

@@ -32,4 +32,9 @@ public class UsuarioController {
         return "Login exitoso";
     }
 
+    @GetMapping("/{username}")
+    public UsuarioModel obtenerUsuario(@PathVariable String username) {
+        return usuarioReposity.findByUsername(username);
+    }
+
 }
